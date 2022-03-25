@@ -120,15 +120,35 @@ void MinimalLedController::minimalHueToRgb(const double &hue, const double &satu
             blue = q;
             break;
     }
-    _minimalRed = static_cast<int> (red * 255);
-    _minimalGreen = static_cast<int> (green * 255);
-    _minimalBlue = static_cast<int> (blue * 255);
+    _minimalRed = static_cast<int>(red * 255);
+    _minimalGreen = static_cast<int>(green * 255);
+    _minimalBlue = static_cast<int>(blue * 255);
 }
 
 void MinimalLedController::showAll() {
     ledBar_1.show();
     ledBar_2.show();
     ledBar_3.show();
+}
+
+void SimpleLedController::constantBar(const int &barIndex, const int &red, const int &green, const int &blue) {
+    setColorBar(barIndex, red, green, blue);
+    showAll();
+}
+
+void SimpleLedController::constantBar(const int &barIndex, const double &hue, const double &saturation, const double &value) {
+    setColorBar(barIndex, hue, saturation, value);
+    showAll();
+}
+
+void SimpleLedController::constantAll(const int &red, const int &green, const int &blue) {
+    setColorAll(red, green, blue);
+    showAll();
+}
+
+void SimpleLedController::constantAll(const double &hue, const double &saturation, const double &value) {
+    setColorAll(hue, saturation, value);
+    showAll();
 }
 
 void SimpleLedController::flashLight() {
@@ -213,7 +233,6 @@ void SimpleLedController::rainbowDown(const int &milliseconds, const double &val
 }
 
 void SimpleLedController::breathe(const double &hue, const double &saturation, const double &value, const int &milliseconds) {
-
 }
 
 void SimpleLedController::rgbSetter(const int &red, const int &green, const int &blue) {
@@ -258,7 +277,7 @@ void SimpleLedController::hueToRgb(const double &hue, const double &saturation, 
             blue = q;
             break;
     }
-    _red = static_cast<int> (red * 255);
-    _green = static_cast<int> (green * 255);
-    _blue = static_cast<int> (blue * 255);
+    _red = static_cast<int>(red * 255);
+    _green = static_cast<int>(green * 255);
+    _blue = static_cast<int>(blue * 255);
 }

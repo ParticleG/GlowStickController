@@ -5,11 +5,12 @@
 #ifndef GLOWSTICKCONTROLLER_LEDCONTROLLER_HPP
 #define GLOWSTICKCONTROLLER_LEDCONTROLLER_HPP
 
-#include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include <Arduino.h>
+
 
 #define SERIAL_NUMBER 9600
-#define LED_COUNT 24
+#define LED_COUNT 16
 #define RGB_MAX 255
 #define RGB_LOW 25
 #define RGB_OFF 0
@@ -51,14 +52,22 @@ protected:
 
 private:
     int _minimalRed, _minimalGreen, _minimalBlue;
-    Adafruit_NeoPixel ledBar_1 = Adafruit_NeoPixel(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
-    Adafruit_NeoPixel ledBar_2 = Adafruit_NeoPixel(LED_COUNT, 3, NEO_GRB + NEO_KHZ800);
-    Adafruit_NeoPixel ledBar_3 = Adafruit_NeoPixel(LED_COUNT, 4, NEO_GRB + NEO_KHZ800);
+    Adafruit_NeoPixel ledBar_1 = Adafruit_NeoPixel(LED_COUNT, 25, NEO_GRB + NEO_KHZ800);
+    Adafruit_NeoPixel ledBar_2 = Adafruit_NeoPixel(LED_COUNT, 26, NEO_GRB + NEO_KHZ800);
+    Adafruit_NeoPixel ledBar_3 = Adafruit_NeoPixel(LED_COUNT, 27, NEO_GRB + NEO_KHZ800);
 };
 
 class SimpleLedController : public MinimalLedController {
 public:
     SimpleLedController() { _red = RGB_LOW, _blue = RGB_LOW, _green = RGB_LOW; }
+
+    void constantBar(const int &barIndex, const int &red, const int &green, const int &blue);
+
+    void constantBar(const int &barIndex, const double &hue, const double &saturation, const double &value);
+
+    void constantAll(const int &red, const int &green, const int &blue);
+
+    void constantAll(const double &hue, const double &saturation, const double &value);
 
     void flashLight();
 
@@ -85,4 +94,4 @@ protected:
 };
 
 
-#endif //GLOWSTICKCONTROLLER_LEDCONTROLLER_HPP
+#endif//GLOWSTICKCONTROLLER_LEDCONTROLLER_HPP
